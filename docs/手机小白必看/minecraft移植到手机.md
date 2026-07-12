@@ -1,5 +1,5 @@
 ---
-sidebar_position: 11
+sidebar_position: 13
 title: Minecraft Java版 如何被移植在手机上的？
 description: 用大白话讲清楚 PojavLauncher 等启动器是怎么把电脑版 Minecraft Java 版搬到手机上的，重点讲 so 文件的作用。
 ---

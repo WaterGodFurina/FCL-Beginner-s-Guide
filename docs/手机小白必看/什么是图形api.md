@@ -1,5 +1,5 @@
 ---
-sidebar_position: 12
+sidebar_position: 11
 title: 什么是图形 API？
 description: 用大白话讲清楚什么是图形 API、主流的 OpenGL、Vulkan、DirectX、Metal 各有什么特点。
 ---

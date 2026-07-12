@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: 引言
+title: 手机小白必看
 description: 这是一份专为从未接触过计算机知识的手机小白编写的科普文档，用大白话讲清楚手机里的各种概念。
 ---
 
