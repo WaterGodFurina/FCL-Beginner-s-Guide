@@ -3,7 +3,7 @@
     "title": "API",
     "color": "#3498db",
     "content": "Application Programming Interface，应用程序接口，用于不同软件系统之间的通信。"
-  },
+  }
   "test": {
     "title": "test",
     "color": "#3498db",
