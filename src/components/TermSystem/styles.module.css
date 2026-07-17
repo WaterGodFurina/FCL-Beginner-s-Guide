@@ -1,19 +1,13 @@
 /* 术语链接 */
 .termLink {
+  color: var(--ifm-color-primary);
   cursor: pointer;
-  border-bottom: 1px dashed currentColor;
+  border-bottom: 1px dashed var(--ifm-color-primary);
   transition: opacity 0.2s;
 }
 
 .termLink:hover {
   opacity: 0.75;
-}
-
-/* 未定义的术语 */
-.missing {
-  color: var(--ifm-color-danger);
-  text-decoration: wavy underline;
-  cursor: help;
 }
 
 /* 遮罩层 */
@@ -36,8 +30,11 @@
   border-radius: var(--ifm-global-radius);
   box-shadow: var(--ifm-global-shadow-lw);
   padding: 1.5rem;
-  max-width: 460px;
+  max-width: 520px;
   width: 100%;
+  max-height: 80vh;           /* 整体不超过视口 80% */
+  display: flex;
+  flex-direction: column;
   position: relative;
   animation: slideUp 0.2s ease;
 }
@@ -56,6 +53,7 @@
   padding: 0.25rem 0.5rem;
   border-radius: var(--ifm-global-radius);
   transition: all 0.2s;
+  z-index: 1;
 }
 
 .closeBtn:hover {
@@ -66,15 +64,54 @@
 /* 标题 */
 .title {
   margin: 0 0 0.75rem 0;
+  padding-right: 2rem;        /* 给关闭按钮留空间 */
   font-size: 1.25rem;
   font-weight: 600;
 }
 
-/* 内容 */
+/* 内容区 —— 关键：溢出滚动 */
 .content {
   color: var(--ifm-font-color-base);
   line-height: 1.7;
   font-size: 0.95rem;
+  
+  max-height: 50vh;           /* 内容区最大高度 */
+  overflow-y: auto;           /* 超出出滚动条 */
+  padding-right: 0.5rem;      /* 滚动条不压文字 */
+  
+  /* 滚动条样式 */
+  scrollbar-width: thin;
+  scrollbar-color: var(--ifm-color-emphasis-300) transparent;
+}
+
+.content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: var(--ifm-color-emphasis-300);
+  border-radius: 3px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 状态 */
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.error {
+  color: var(--ifm-color-danger);
+  padding: 1rem 0;
+}
+
+.error strong {
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 /* 动画 */
