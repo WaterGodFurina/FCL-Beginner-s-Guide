@@ -1,0 +1,89 @@
+/* 术语链接 */
+.termLink {
+  cursor: pointer;
+  border-bottom: 1px dashed currentColor;
+  transition: opacity 0.2s;
+}
+
+.termLink:hover {
+  opacity: 0.75;
+}
+
+/* 未定义的术语 */
+.missing {
+  color: var(--ifm-color-danger);
+  text-decoration: wavy underline;
+  cursor: help;
+}
+
+/* 遮罩层 */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+  padding: 1rem;
+}
+
+/* 弹窗卡片 */
+.modal {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  box-shadow: var(--ifm-global-shadow-lw);
+  padding: 1.5rem;
+  max-width: 460px;
+  width: 100%;
+  position: relative;
+  animation: slideUp 0.2s ease;
+}
+
+/* 关闭按钮 */
+.closeBtn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--ifm-color-emphasis-500);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--ifm-global-radius);
+  transition: all 0.2s;
+}
+
+.closeBtn:hover {
+  color: var(--ifm-color-emphasis-900);
+  background: var(--ifm-color-emphasis-200);
+}
+
+/* 标题 */
+.title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* 内容 */
+.content {
+  color: var(--ifm-font-color-base);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

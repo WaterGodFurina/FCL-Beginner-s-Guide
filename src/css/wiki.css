@@ -1,0 +1,72 @@
+.word-highlight {
+  color: #25c2a0;
+  cursor: pointer;
+  font-weight: 500;
+  border-bottom: 1px dotted #25c2a0;
+  transition: all 0.2s;
+}
+
+.word-highlight:hover {
+  color: #2e8b57;
+  border-bottom-style: solid;
+}
+
+.wiki-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.2s;
+}
+
+.wiki-modal-content {
+  background-color: var(--ifm-background-color);
+  border-radius: var(--ifm-global-radius);
+  box-shadow: var(--ifm-global-shadow-md);
+  max-width: 400px;
+  width: 90%;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  animation: slideIn 0.2s;
+}
+
+.wiki-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  background-color: var(--ifm-color-emphasis-100);
+  border-radius: var(--ifm-global-radius) var(--ifm-global-radius) 0 0;
+}
+
+.wiki-modal-header span {
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+}
+
+.wiki-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.wiki-modal-close:hover {
+  color: var(--ifm-color-danger);
+}
+
+.wiki-modal-body {
+  padding: 1.2rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
