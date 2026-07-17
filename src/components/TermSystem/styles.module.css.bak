@@ -124,8 +124,9 @@
   border-radius: 9px;
   padding: 3px;
   margin-bottom: 1rem;
-  order: -1;
+  order: -1;              /* ✅ 视觉排在最前面 */
 }
+
 
 .segLabel {
   flex: 1;

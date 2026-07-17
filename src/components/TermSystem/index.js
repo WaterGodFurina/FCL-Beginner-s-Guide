@@ -4,22 +4,58 @@ import { marked } from 'marked';
 import styles from './styles.module.css';
 
 const mdCache = new Map();
-const ANIMATION_DURATION = 200; // 和 CSS 动画时长保持一致
+const ANIMATION_DURATION = 200;
 
-// ========== 弹窗（带关闭动画）==========
+// 提取 [brief]...[/brief] 和 [detail]...[/detail]
+function processTermMarkdown(mdContent, termId) {
+  const briefMatch = mdContent.match(/\[brief\]([\s\S]*?)\[\/brief\]/);
+  const detailMatch = mdContent.match(/\[detail\]([\s\S]*?)\[\/detail\]/);
+
+  let mainContent = mdContent;
+  let briefHtml = '';
+  let detailHtml = '';
+
+  if (briefMatch) {
+    briefHtml = marked.parse(briefMatch[1].trim());
+    mainContent = mainContent.replace(briefMatch[0], '');
+  }
+  if (detailMatch) {
+    detailHtml = marked.parse(detailMatch[1].trim());
+    mainContent = mainContent.replace(detailMatch[0], '');
+  }
+
+  const prefixHtml = marked.parse(mainContent.trim());
+
+  if (briefHtml || detailHtml) {
+    const switcherHtml = `
+      <div class="${styles.segContainer}">
+        <input type="radio" name="seg-${termId}" class="${styles.segInput}" id="seg-${termId}-1" checked>
+        <div class="${styles.segPanel}">${briefHtml}</div>
+        <input type="radio" name="seg-${termId}" class="${styles.segInput}" id="seg-${termId}-2">
+        <div class="${styles.segPanel}">${detailHtml}</div>
+        <div class="${styles.segControl}">
+          <label for="seg-${termId}-1" class="${styles.segLabel}">简略</label>
+          <label for="seg-${termId}-2" class="${styles.segLabel}">详细</label>
+          <div class="${styles.segSlider}"></div>
+        </div>
+      </div>
+    `;
+    return prefixHtml + switcherHtml;
+  }
+
+  return prefixHtml;
+}
+
+// ========== 弹窗（不变）==========
 function TermModal({ html, loading, error, onClose }) {
   const [isClosing, setIsClosing] = useState(false);
 
-  // 统一关闭入口：先播动画，再真正卸载
   const handleClose = useCallback(() => {
     if (isClosing) return;
     setIsClosing(true);
-    setTimeout(() => {
-      onClose();
-    }, ANIMATION_DURATION);
+    setTimeout(() => onClose(), ANIMATION_DURATION);
   }, [isClosing, onClose]);
 
-  // ESC 键关闭
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape') handleClose();
@@ -34,28 +70,16 @@ function TermModal({ html, loading, error, onClose }) {
   return (
     <div className={overlayClass} onClick={handleClose}>
       <div className={modalClass} onClick={(e) => e.stopPropagation()}>
-        <button
-          className={styles.closeBtn}
-          onClick={handleClose}
-          aria-label="关闭"
-        >
-          ×
-        </button>
-
+        <button className={styles.closeBtn} onClick={handleClose} aria-label="关闭">×</button>
         {loading && <div className={styles.loading}>加载中...</div>}
-
         {error && (
           <div className={styles.error}>
             <strong>加载失败</strong>
             <p>{error}</p>
           </div>
         )}
-
         {html && !loading && !error && (
-          <div
-            className={styles.content}
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
+          <div className={styles.content} dangerouslySetInnerHTML={{ __html: html }} />
         )}
       </div>
     </div>
@@ -66,6 +90,7 @@ function TermModal({ html, loading, error, onClose }) {
 export function TermLink({ path, color, children }) {
   const { siteConfig } = useDocusaurusContext();
   const baseUrl = siteConfig.baseUrl || '/';
+  const termId = path.split('/').pop().replace(/\.md$/, '');
 
   const [isOpen, setIsOpen] = useState(false);
   const [html, setHtml] = useState('');
@@ -84,29 +109,27 @@ export function TermLink({ path, color, children }) {
       setError(null);
 
       try {
-        let mdContent = mdCache.get(path);
+        const mdPath = path.endsWith('.md') ? path : `${path}.md`;
+        let mdContent = mdCache.get(mdPath);
 
         if (!mdContent) {
           const cleanBase = baseUrl.replace(/\/$/, '');
-          const fullPath = `${cleanBase}${path}`;
-
+          const fullPath = `${cleanBase}${mdPath}`;
           const res = await fetch(fullPath);
-          if (!res.ok) {
-            throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-          }
+          if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
           mdContent = await res.text();
-          mdCache.set(path, mdContent);
+          mdCache.set(mdPath, mdContent);
         }
 
-        const parsed = marked.parse(mdContent);
-        setHtml(parsed);
+        const processed = processTermMarkdown(mdContent, termId);
+        setHtml(processed);
       } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
       }
     },
-    [path, baseUrl, isOpen]
+    [path, baseUrl, isOpen, termId]
   );
 
   const handleClose = useCallback(() => {
@@ -123,19 +146,12 @@ export function TermLink({ path, color, children }) {
         onClick={handleClick}
         role="button"
         tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') handleClick(e);
-        }}
+        onKeyDown={(e) => e.key === 'Enter' && handleClick(e)}
       >
         {children}
       </span>
       {isOpen && (
-        <TermModal
-          html={html}
-          loading={loading}
-          error={error}
-          onClose={handleClose}
-        />
+        <TermModal html={html} loading={loading} error={error} onClose={handleClose} />
       )}
     </>
   );
