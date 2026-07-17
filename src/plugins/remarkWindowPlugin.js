@@ -1,3 +1,4 @@
+// src/plugins/remarkTermPlugin.js
 const { visit } = require('unist-util-visit');
 
 function remarkTermPlugin() {
@@ -5,20 +6,25 @@ function remarkTermPlugin() {
     visit(tree, 'link', (node, index, parent) => {
       if (!node.url || !node.url.startsWith('window:')) return;
 
-      // 解析 window:术语ID:/term/xxx.json
+      // 解析 window:/term/colors.json#green
       const raw = node.url.replace(/^window:/, '');
-      const colonIndex = raw.indexOf(':');
-      if (colonIndex === -1) return; // 格式不对，不处理
-
-      const id = raw.slice(0, colonIndex);
-      const path = raw.slice(colonIndex + 1);
+      const hashIndex = raw.indexOf('#');
+      
+      let path, id;
+      if (hashIndex === -1) {
+        // 没写 #，整个当 path，id 从链接文本取（不推荐）
+        path = raw;
+        id = '';
+      } else {
+        path = raw.slice(0, hashIndex);
+        id = raw.slice(hashIndex + 1);
+      }
 
       // 提取链接文本
       const text = node.children
         .map(child => child.value || '')
         .join('');
 
-      // MDX v3 内联 JSX 节点
       const jsxNode = {
         type: 'mdxJsxTextElement',
         name: 'TermLink',
