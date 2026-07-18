@@ -16,7 +16,6 @@ import {
   faComments,
   faBug,
   faGlobe,
-  faGamepad,
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import styles from './index.module.css';
@@ -38,10 +37,8 @@ export default function Home() {
           {/* Hero 区域 */}
           <header className={styles.hero}>
             <div className="container">
-              <h1>
-                <FontAwesomeIcon icon={faGamepad} className={styles.heroIcon} />
-                FCL 启动器新手教程
-              </h1>
+              <img src="/img/fcl-icon.png" alt="FCL 图标" className={styles.heroLogo} />
+              <h1>FCL 启动器新手教程</h1>
               <p>从零开始，在 Android 手机上畅玩 Minecraft Java 版</p>
               <Link className={styles.startBtn} to="/docs/intro">
                 <FontAwesomeIcon icon={faBookOpen} />

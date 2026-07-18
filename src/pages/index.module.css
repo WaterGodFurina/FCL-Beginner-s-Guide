@@ -22,11 +22,12 @@
   line-height: 1.2;
 }
 
-.heroIcon {
-  color: var(--ifm-color-primary);
-  margin-right: 0.5rem;
-  font-size: 0.85em;
-  vertical-align: middle;
+.heroLogo {
+  display: block;
+  width: clamp(72px, 12vw, 110px);
+  height: auto;
+  margin: 0 auto 1.25rem;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.25));
 }
 
 .hero p {
