@@ -10,7 +10,7 @@ import AboutBackButton from '@site/src/components/AboutBackButton';
 
 # 👥 贡献者名单
 
-感谢以下小伙伴的无私付出，让本教程变得更好！
+感谢以下贡献者的无私付出，让本教程变得更好！
 
 <div style={{
   display: 'grid',
@@ -61,6 +61,25 @@ import AboutBackButton from '@site/src/components/AboutBackButton';
 
 </div>
 
+# 🙏 致谢
+感谢以下人员的图片提供，为本教程提供了更多参考
+
+- [胡桃⁡⁢ᵐⁱʰᵒʸᵒ®认证](tencent://message/?uin=939***505)
+- [Tao • LW](tencent://message/?uin=3812***092)
+- [彩泉861](tencent://message/?uin=363***8296)
+- [墨墨](tencent://message/?uin=551338814)
+- [大老虎.](tencent://message/?uin=2912***622)
+- [王某人W](tencent://message/?uin=377***9971)
+- [我的世界良心君](tencent://message/?uin=394***8637)
+- [远古大暴](tencent://message/?uin=2192***452)
+
+感谢以下小伙伴的热心反馈，帮助我们发现并修正问题，让内容更加准确完善！
+
+- [！？强 强？！](tencent://message/?uin=483***515)
+- [6VuI1c4Q](tencent://message/?uin=378***1256)
+
 ---
 
-> 💡 如果你也想成为贡献者，欢迎 [参与文档编写](https://github.com/FCLdocs-community/FCLdocs)！
+> 💡 如果你也想成为贡献者，欢迎 [参与文档编写](https://github.com/FCLdocs-community/FCLdocs/pulls)！
+
+> 💡 如果你也有更好的建议，欢迎 [来Github提交你的问题](https://github.com/FCLdocs-community/FCLdocs/issues) 或 [来QQ群反馈文档问题](https://qun.qq.com/universal-share/share?ac=1&authKey=2xJ1v0ZgJm39q0Mf9ju7foVUsDVY3qZjKMBHRboR8xXeE68KN2e%2FaFnc1%2B%2BoVd8G&busi_data=eyJncm91cENvZGUiOiI3NDM0NjAwNzEiLCJ0b2tlbiI6IkxmNkhENExhcm0rL2s5Z2dxNzFUNnR6Nnh5NEpKOVg5c0lkVEMyZTFKbW9RZ1oreWNqWlkzdGxlUllWTW92bmEiLCJ1aW4iOiIzNDQyMzU5NDA3In0%3D&data=5fRRlxHzIiCmF-qd8-S_RR__jLK8yYIBg_Kx02H6pnDP2zsc4P3-XlLMboVvrE7hpQGsY4Lt7IWNCqbWjmClow&svctype=4&tempid=h5_group_info)
