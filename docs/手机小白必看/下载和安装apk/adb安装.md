@@ -15,8 +15,8 @@ description: 用大白话讲清楚什么是 ADB、怎么用 ADB 装 APK
 除了前面讲的三种，还有几种渠道：
 
 1. **ADB 安装**：用电脑通过命令行装，本节重点讲。
-2. **第三方安装器**：SAI（装拆分 APK）、APKPure 安装器等。
-3. **Root 后用 Root Explorer 直接装**。
+2. **第三方安装器**：[SAI](https://github.com/Aefyr/SAI)（装拆分 APK）、[APKPure 安装器](https://apkpure.net/apk-installer)等。
+3. **Root 后用 [Root Explorer](https://www.speedsoftware.co.uk/) 直接装**。
 4. **Recovery 刷入**：把 APK 刷成系统应用（高级）。
 5. **共享存储**：从电脑复制 APK 到手机，再点安装。
 
