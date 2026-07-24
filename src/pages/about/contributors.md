@@ -65,6 +65,24 @@ import AboutBackButton from '@site/src/components/AboutBackButton';
   contributions="贡献了“开服教程”，修复了一些语法错误"
 />
 
+<ContributorCard
+  name="mengcha114"
+  avatar="https://avatars.githubusercontent.com/u/158115327?v=4"
+  contributions="减缓了低端GPU看本文档的花屏问题，为部分文档中的第三方工具及网站添加超链接跳转"
+/>
+
+<ContributorCard
+  name="Huangjiang-a11y"
+  avatar="https://avatars.githubusercontent.com/u/279459477?v=4"
+  contributions="贡献了“首次使用”文档"
+/>
+
+<ContributorCard
+  name="6VuI1c4Q"
+  avatar="https://avatars.githubusercontent.com/u/300451282?v=4"
+  contributions="贡献了“联机操作”文档，修正了部分语法错误"
+/>
+
 </div>
 
 # 🙏 致谢

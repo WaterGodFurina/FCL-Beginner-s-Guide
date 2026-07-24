@@ -57,7 +57,7 @@ if (typeof window !== 'undefined') {
       hideOverlay();
     } else {
       window.addEventListener('load', hideOverlay, { once: true });
-      setTimeout(hideOverlay, 3000);
+      setTimeout(hideOverlay, 12000);
     }
   } else {
     // 非根路径：保险清理（比如从 / 前进后退过来）
